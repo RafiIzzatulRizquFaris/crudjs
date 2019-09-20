@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <input type="text" id="inputtext" placeholder="Input Text">
+    <input type="submit" onclick="tambah()">
+
+    <table border="1px" style="margin-top: 10px;">
+        <thead>
+            <tr>
+                <th>Data barang</th>
+                <th style="width: 102px;">Action</th>
+            </tr>
+        </thead>
+        <tbody id="data">
+
+        </tbody>
+    </table>
+
+
+    <script>
+        var databarang = []
+        var list = document.getElementById('data')
+
+        function tampil() {
+            list.innerHTML = ""
+            for (var i = 0; i < databarang.length; i++) {
+                list.innerHTML += "<tr><td>" +
+                    databarang[i] + "</td><td>" + "<input type='submit' onclick='hapus(" + i +
+                    ")' value='Delete'>" +
+                    "<input type='submit' onclick='edit(" + i + ")' value='Edit' style='margin-left: 5px'>" +
+                    "</td></tr>"
+            }
+        }
+
+        function tambah() {
+            var databaru = document.getElementById('inputtext').value;
+            databarang.push(databaru)
+            tampil();
+        }
+
+        function hapus(i) {
+            databarang.splice(i, 1)
+            tampil();
+        }
+
+        function edit(i) {
+            var dataterbaru = prompt("masukkan data baru dari " + databarang[i])
+            databarang[i] = dataterbaru
+            tampil()
+        }
+        tampil()
+    </script>
+
+</body>
+
+</html>
